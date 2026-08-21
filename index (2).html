@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Odette Cecilia Chambala — Art Events Curator & Crochet Artist</title>
+<meta name="description" content="Portfolio of Odette Cecilia Chambala, Art Events Curator and Professional Crochet Artist based in Johannesburg, South Africa.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500&family=Work+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================
+   DESIGN TOKENS
+   Palette drawn from natural-dye fibre work: indigo ink,
+   undyed wool cream, ochre and rust dye tones, sage thread.
+   ========================================================== */
+:root {
+  --ink: #8C6D4F;        /* lighter warm brown — hero / footer background */
+  --ink-soft: #9C7F63;   /* lighter brown for borders on dark bg */
+  --cream: #F3ECDD;      /* undyed wool — light section background */
+  --cream-soft: #EAE1CE; /* slightly deeper cream for cards */
+  --charcoal: #2B2620;   /* body text on light background */
+  --muted: #7A7566;      /* secondary text / dates */
+  --ochre: #6E7B4F;      /* primary accent — olive green */
+  --rust: #55622F;       /* secondary accent — deeper olive */
+  --sage: #808C5A;       /* tertiary accent — soft olive */
+  --forest: #3B4A32;     /* dark green — footer / contact background */
+
+  --font-display: 'Fraunces', Georgia, serif;
+  --font-body: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+
+  --max-width: 1120px;
+  --radius: 4px;
+}
+
+/* ==========================================================
+   RESET & BASE
+   ========================================================== */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--charcoal);
+  background: var(--cream);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+h1, h2, h3 { font-family: var(--font-display); margin: 0; line-height: 1.1; }
+p { margin: 0 0 1em; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+
+.skip-link {
+  position: absolute; left: -999px; top: 0;
+  background: var(--ochre); color: var(--ink); padding: 0.75em 1.25em;
+  z-index: 999; font-family: var(--font-mono); font-size: 0.85rem;
+}
+.skip-link:focus { left: 1em; top: 1em; }
+
+:focus-visible {
+  outline: 2px solid var(--ochre);
+  outline-offset: 3px;
+}
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 2.5rem);
+}
+
+/* ==========================================================
+   SHARED TYPE ELEMENTS
+   ========================================================== */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.6em;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: 0.9em;
+}
+.eyebrow--light { color: var(--ochre); }
+
+.stitch-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+h2 {
+  font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+  font-weight: 500;
+  max-width: 16ch;
+}
+
+.lede {
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--charcoal);
+}
+
+/* ==========================================================
+   HEADER / NAV
+   ========================================================== */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(243, 236, 221, 0.92);
+  backdrop-filter: blur(6px);
+  border-bottom: 1px solid var(--cream-soft);
+}
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--ink);
+}
+.brand span { color: var(--rust); }
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+.main-nav a {
+  text-decoration: none;
+  font-size: 0.92rem;
+  color: var(--charcoal);
+  position: relative;
+  padding: 0.25em 0;
+}
+.main-nav a:not(.nav-cta)::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 0; height: 2px;
+  background: var(--ochre);
+  transition: width 0.2s ease;
+}
+.main-nav a:not(.nav-cta):hover::after { width: 100%; }
+
+.nav-cta {
+  border: 1px solid var(--ink);
+  padding: 0.5em 1.1em;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 0.8rem !important;
+}
+.nav-cta:hover { background: var(--ink); color: var(--cream); }
+
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px; height: 40px;
+  background: none; border: none; cursor: pointer;
+}
+.nav-toggle span {
+  display: block; height: 2px; width: 22px;
+  background: var(--ink); transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* ==========================================================
+   HERO / CONTACT (dark indigo sections)
+   ========================================================== */
+.hero {
+  background: var(--ink);
+  color: var(--cream);
+  padding: clamp(4rem, 10vw, 7rem) 0;
+}
+.hero-inner { max-width: 760px; }
+.hero-name {
+  font-size: clamp(2.4rem, 7vw, 4.4rem);
+  font-weight: 500;
+  color: var(--cream);
+}
+.chain-underline {
+  width: min(100%, 420px);
+  height: 22px;
+  margin: 0.9em 0 1.4em;
+  fill: none;
+  stroke: var(--ochre);
+  stroke-width: 3;
+  stroke-linecap: round;
+}
+.chain-underline--small { width: 140px; height: 12px; margin: 0; stroke: var(--rust); stroke-width: 2; }
+
+.hero-tagline {
+  font-size: 1.15rem;
+  max-width: 46ch;
+  color: var(--cream-soft);
+  font-weight: 300;
+}
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.btn {
+  display: inline-block;
+  text-decoration: none;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  padding: 0.85em 1.6em;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+.btn--solid { background: var(--ochre); color: var(--ink); }
+.btn--solid:hover { background: #85924F; }
+.btn--ghost { border-color: var(--cream-soft); color: var(--cream); }
+.btn--ghost:hover { border-color: var(--ochre); color: var(--ochre); }
+
+.hero--contact { text-align: left; background: var(--forest); }
+.contact-heading { color: var(--cream); margin-bottom: 0.5em; max-width: none; }
+.contact-email {
+  display: inline-block;
+  margin-top: 1.2rem;
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  color: var(--ochre);
+  text-decoration: none;
+  border-bottom: 1px solid var(--ochre);
+  padding-bottom: 2px;
+}
+.contact-email:hover { color: #85924F; }
+.contact-phone { display: block; margin-top: 0.5rem; }
+
+/* ==========================================================
+   GENERIC SECTION LAYOUT
+   ========================================================== */
+.section { padding: clamp(3.5rem, 8vw, 6rem) 0; }
+.section--cream { background: var(--cream-soft); }
+
+.section-grid {
+  display: grid;
+  grid-template-columns: minmax(180px, 280px) 1fr;
+  gap: clamp(2rem, 6vw, 4rem);
+}
+.section-head--center { text-align: center; max-width: 640px; margin: 0 auto 3rem; }
+.section-head--center h2 { max-width: none; }
+
+/* ==========================================================
+   ABOUT
+   ========================================================== */
+.fact-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid rgba(43,38,32,0.15);
+}
+.fact { display: flex; flex-direction: column; gap: 0.3em; }
+.fact-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+.fact-value { font-weight: 500; }
+
+/* ==========================================================
+   SKILLS
+   ========================================================== */
+.skill-group + .skill-group { margin-top: 2.25rem; }
+.skill-group h3 {
+  font-size: 1rem;
+  font-family: var(--font-body);
+  font-weight: 600;
+  margin-bottom: 0.9em;
+  color: var(--ink);
+}
+.tag-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.tag-list li {
+  background: var(--cream);
+  border: 1px solid rgba(43,38,32,0.15);
+  border-radius: var(--radius);
+  padding: 0.5em 0.9em;
+  font-size: 0.9rem;
+}
+.tag-list--accent li {
+  background: var(--ink);
+  color: var(--cream);
+  border-color: var(--ink);
+}
+
+/* ==========================================================
+   PROJECTS
+   ========================================================== */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+.project-card {
+  background: var(--cream-soft);
+  border: 1px solid rgba(43,38,32,0.12);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+}
+.project-card h3 {
+  font-size: 1.3rem;
+  font-weight: 500;
+  margin: 0.2em 0 0.5em;
+}
+.project-tag {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--rust);
+  margin: 0;
+}
+.chip-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: auto; padding-top: 1rem; }
+.chip-row li {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--sage);
+  border: 1px solid var(--sage);
+  border-radius: 999px;
+  padding: 0.3em 0.8em;
+}
+
+/* ==========================================================
+   EDUCATION / CERTIFICATIONS
+   ========================================================== */
+.cred-list li {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid rgba(43,38,32,0.12);
+}
+.cred-list li:first-child { padding-top: 0; }
+.cred-title { font-weight: 600; }
+.cred-meta { font-family: var(--font-mono); font-size: 0.82rem; color: var(--muted); }
+
+/* ==========================================================
+   EXPERIENCE TIMELINE
+   ========================================================== */
+.timeline li {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 1rem;
+  padding: 1.1rem 0;
+  border-bottom: 1px solid rgba(43,38,32,0.12);
+  align-items: baseline;
+}
+.timeline li:first-child { padding-top: 0; }
+.timeline-date {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--rust);
+}
+.timeline-role { display: block; font-weight: 600; }
+.timeline-org { display: block; font-size: 0.9rem; color: var(--muted); grid-column: 2; }
+
+/* ==========================================================
+   FOOTER
+   ========================================================== */
+.site-footer {
+  background: var(--forest);
+  color: var(--cream-soft);
+  padding: 1.75rem 0;
+  border-top: 1px solid var(--ink-soft);
+}
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+@media (max-width: 900px) {
+  .section-grid { grid-template-columns: 1fr; }
+  .project-grid { grid-template-columns: 1fr; }
+  .fact-strip { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+@media (max-width: 720px) {
+  .main-nav {
+    position: fixed;
+    inset: 68px 0 0 0;
+    background: var(--cream);
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem clamp(1.25rem, 4vw, 2.5rem);
+    gap: 1.5rem;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .main-nav.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .main-nav a { font-size: 1.1rem; }
+  .nav-toggle { display: flex; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .nav-toggle[aria-expanded="true"] span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .timeline li { grid-template-columns: 1fr; }
+  .timeline-org { grid-column: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { transition: none !important; }
+}
+
+</style>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header" id="top">
+  <div class="wrap header-inner">
+    <a href="#top" class="brand">Odette <span>Chambala</span></a>
+    <nav class="main-nav" id="main-nav" aria-label="Primary">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Work</a>
+      <a href="#education">Education</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact" class="nav-cta">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="main-nav" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="wrap hero-inner">
+      <p class="eyebrow eyebrow--light"><span class="stitch-dot" aria-hidden="true"></span>Art Events Curator &amp; Professional Crochet Artist</p>
+      <h1 class="hero-name">Odette Cecilia<br>Chambala</h1>
+      <svg class="chain-underline" viewBox="0 0 560 28" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M2 14 C 20 2, 38 2, 46 14 C 54 26, 72 26, 80 14 C 88 2, 106 2, 114 14 C 122 26, 140 26, 148 14 C 156 2, 174 2, 182 14 C 190 26, 208 26, 216 14 C 224 2, 242 2, 250 14 C 258 26, 276 26, 284 14 C 292 2, 310 2, 318 14 C 326 26, 344 26, 352 14 C 360 2, 378 2, 386 14 C 394 26, 412 26, 420 14 C 428 2, 446 2, 454 14 C 462 26, 480 26, 488 14 C 496 2, 514 2, 522 14 C 530 26, 548 26, 556 14" />
+      </svg>
+      <p class="hero-tagline">I curate art events and craft crochet work that turns communities in Johannesburg into spaces for making, learning and healing together.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn--solid">See my work</a>
+        <a href="#contact" class="btn btn--ghost">Get in touch</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about">
+    <div class="wrap section-grid">
+      <div class="section-head">
+        <p class="eyebrow"><span class="stitch-dot" aria-hidden="true"></span>About</p>
+        <h2>Craft as a way to build community</h2>
+      </div>
+      <div class="section-body">
+        <p class="lede">I'm an art events curator and professional crochet artist based in Braamfontein, Johannesburg. My work sits at the intersection of craft, community organising and wellness — I design experiences where people learn a skill, connect with each other, and leave with something they made themselves.</p>
+        <p>I'm the co-founder of <strong>Earth Hand and Fiber</strong>, a youth-focused creative organisation that teaches crochet and sustainable fashion skills to underprivileged kids and women, with the aim of turning craft into a source of income and confidence. I also run my own crochet business, <strong>Crocheted By Ci</strong>. Alongside that, I partner with organisations across Johannesburg — Greenpeace Africa, Sankofa and the NYDA among them — to curate ticketed events, workshops and community days that combine hands-on making with meditation, environmental education and collective care.</p>
+        <div class="fact-strip">
+          <div class="fact"><span class="fact-label">Based in</span><span class="fact-value">Braamfontein, Johannesburg</span></div>
+          <div class="fact"><span class="fact-label">Focus</span><span class="fact-value">Event curation &amp; crochet artistry</span></div>
+          <div class="fact"><span class="fact-label">Currently</span><span class="fact-value">Co-founder, Earth Hand and Fiber</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section section--cream" id="skills">
+    <div class="wrap section-grid">
+      <div class="section-head">
+        <p class="eyebrow"><span class="stitch-dot" aria-hidden="true"></span>Skills</p>
+        <h2>What I bring to the table</h2>
+      </div>
+      <div class="section-body">
+        <div class="skill-group">
+          <h3>Curatorial &amp; craft skills</h3>
+          <ul class="tag-list">
+            <li>Crochet artistry &amp; instruction</li>
+            <li>Event curation &amp; styling</li>
+            <li>Sustainable fashion design</li>
+            <li>Workshop facilitation</li>
+            <li>Social media content &amp; copy</li>
+            <li>Community outreach &amp; partnerships</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <h3>Soft skills</h3>
+          <ul class="tag-list tag-list--accent">
+            <li>Leadership &amp; team coordination</li>
+            <li>Community engagement</li>
+            <li>Event planning &amp; logistics</li>
+            <li>Creative direction</li>
+            <li>Public speaking &amp; facilitation</li>
+            <li>Collaboration &amp; partnership-building</li>
+            <li>Problem-solving under pressure</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="section" id="projects">
+    <div class="wrap">
+      <div class="section-head section-head--center">
+        <p class="eyebrow"><span class="stitch-dot" aria-hidden="true"></span>Selected work</p>
+        <h2>Events &amp; initiatives I've curated</h2>
+      </div>
+      <div class="project-grid">
+
+        <article class="project-card">
+          <p class="project-tag">Organisation</p>
+          <h3>Earth Hand and Fiber</h3>
+          <p>Co-founded a youth-focused creative organisation in Braamfontein equipping underprivileged kids and women with monetisable crochet and sustainable-fashion skills, with plans to expand into other craft forms.</p>
+          <ul class="chip-row">
+            <li>Programme design</li><li>Community organising</li><li>Skills training</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <p class="project-tag">Ticketed event</p>
+          <h3>Moments for Me</h3>
+          <p>Curated a collaborative Women's Day event with Sankofa in Westdene, blending crochet, meditation and sacral healing into a single ticketed wellness experience — my first paid, ticketed collaboration.</p>
+          <ul class="chip-row">
+            <li>Event curation</li><li>Vendor coordination</li><li>Guest experience</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <p class="project-tag">Community collaboration</p>
+          <h3>Mandela Day Initiative</h3>
+          <p>Partnered with Greenpeace Africa to design a Mandela Day activity that wove environmental themes into crochet-making, connecting craft with sustainability education for the community.</p>
+          <ul class="chip-row">
+            <li>Partnership building</li><li>Activity design</li><li>Environmental education</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <p class="project-tag">Workshop</p>
+          <h3>Orphanage Crochet Lesson Day</h3>
+          <p>Organised and ran a crochet lesson event for children from a local orphanage — managing supplies, a last-minute cancellation, and donor communication to keep the day on track.</p>
+          <ul class="chip-row">
+            <li>Workshop facilitation</li><li>Logistics</li><li>Donor communication</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <p class="project-tag">Skills programme</p>
+          <h3>Crochet Skills Development — Bela-Bela</h3>
+          <p>Facilitated a crochet skills development programme in Bela-Bela in collaboration with the NYDA (National Youth Development Agency), delivered under my own business, Crocheted By Ci.</p>
+          <ul class="chip-row">
+            <li>Skills training</li><li>Partnership building</li><li>Programme delivery</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <p class="project-tag">Fashion show</p>
+          <h3>Crochet Fashion Show</h3>
+          <p>Hosted a crochet fashion show under Earth Hand and Fiber focused on educating audiences about sustainable fashion, exploring themes of colorism through the collection.</p>
+          <ul class="chip-row">
+            <li>Creative direction</li><li>Event production</li><li>Sustainable fashion</li>
+          </ul>
+        </article>
+
+        <article class="project-card">
+          <p class="project-tag">Community series</p>
+          <h3>Crochet Picnics</h3>
+          <p>Hosted a series of community crochet picnics — informal gatherings where skills were exchanged between makers and new community connections were formed.</p>
+          <ul class="chip-row">
+            <li>Community building</li><li>Skills exchange</li><li>Event hosting</li>
+          </ul>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION & CERTIFICATIONS -->
+  <section class="section section--cream" id="education">
+    <div class="wrap section-grid">
+      <div class="section-head">
+        <p class="eyebrow"><span class="stitch-dot" aria-hidden="true"></span>Education &amp; certifications</p>
+        <h2>What I've studied</h2>
+      </div>
+      <div class="section-body">
+        <ul class="cred-list">
+          <li>
+            <span class="cred-title">Grade 12 (Matric)</span>
+            <span class="cred-meta">School education</span>
+          </li>
+          <li>
+            <span class="cred-title">Entrepreneurial Development — Short Course</span>
+            <span class="cred-meta">Certificate awarded for Best Business Idea Plan · ~2025</span>
+          </li>
+          <li>
+            <span class="cred-title">End User Computing</span>
+            <span class="cred-meta">Certificate · ~2023</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="wrap section-grid">
+      <div class="section-head">
+        <p class="eyebrow"><span class="stitch-dot" aria-hidden="true"></span>Experience</p>
+        <h2>Where I've worked</h2>
+      </div>
+      <div class="section-body">
+        <ol class="timeline">
+          <li>
+            <span class="timeline-date">2026</span>
+            <span class="timeline-role">Volunteer Induction Facilitator, Part-Time</span>
+            <span class="timeline-org">Greenpeace Africa</span>
+          </li>
+          <li>
+            <span class="timeline-date">2024 – 2025</span>
+            <span class="timeline-role">Workshop Assistant</span>
+            <span class="timeline-org">Egagasini Mag Rims</span>
+          </li>
+          <li>
+            <span class="timeline-date">2021 – 2023</span>
+            <span class="timeline-role">Casual Retail Assistant</span>
+            <span class="timeline-org">Studio88</span>
+          </li>
+          <li>
+            <span class="timeline-date">2018</span>
+            <span class="timeline-role">Social Media Accounts Manager, Part-Time</span>
+            <span class="timeline-org">Sofa'silahlane Ottoman</span>
+          </li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="hero hero--contact" id="contact">
+    <div class="wrap hero-inner">
+      <p class="eyebrow eyebrow--light"><span class="stitch-dot" aria-hidden="true"></span>Contact</p>
+      <h2 class="contact-heading">Let's create something together</h2>
+      <p class="hero-tagline">Open to curatorial work, collaborations and opportunities across events, craft and community organising — and just as open to other kinds of work outside my usual field, since I adapt quickly to new environments.</p>
+      <a class="contact-email" href="mailto:chambalacecilia@gmail.com">chambalacecilia@gmail.com</a>
+      <a class="contact-email contact-phone" href="tel:+27638669688">063 866 9688</a>
+      <div class="hero-actions">
+        <a href="mailto:chambalacecilia@gmail.com" class="btn btn--ghost">Send an email</a>
+        <a href="cv.pdf" class="btn btn--ghost" download>Download my CV</a>
+        <a href="https://za.linkedin.com/in/cecilia-chambala-7724331ab" class="btn btn--ghost" target="_blank" rel="noopener noreferrer">View my LinkedIn</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <span>© <span id="year"></span> Odette Cecilia Chambala</span>
+    <svg class="chain-underline chain-underline--small" viewBox="0 0 200 16" preserveAspectRatio="none" aria-hidden="true">
+      <path d="M2 8 C 12 1, 22 1, 26 8 C 30 15, 40 15, 44 8 C 48 1, 58 1, 62 8 C 66 15, 76 15, 80 8 C 84 1, 94 1, 98 8 C 102 15, 112 15, 116 8 C 120 1, 130 1, 134 8 C 138 15, 148 15, 152 8 C 156 1, 166 1, 170 8 C 174 15, 184 15, 188 8 C 192 1, 198 1, 198 8" />
+    </svg>
+  </div>
+</footer>
+
+<script>
+// Set the footer year automatically
+document.getElementById('year').textContent = new Date().getFullYear();
+
+// Mobile navigation toggle
+const navToggle = document.getElementById('navToggle');
+const mainNav = document.getElementById('main-nav');
+
+navToggle.addEventListener('click', () => {
+  const isOpen = mainNav.classList.toggle('is-open');
+  navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+});
+
+// Close the mobile menu after a link is clicked
+mainNav.querySelectorAll('a').forEach((link) => {
+  link.addEventListener('click', () => {
+    mainNav.classList.remove('is-open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  });
+});
+
+// Highlight the current section's nav link while scrolling
+const sections = document.querySelectorAll('main section[id]');
+const navLinks = document.querySelectorAll('.main-nav a');
+
+const highlightNav = () => {
+  let currentId = '';
+  sections.forEach((section) => {
+    const rect = section.getBoundingClientRect();
+    if (rect.top <= 120 && rect.bottom >= 120) {
+      currentId = section.id;
+    }
+  });
+  navLinks.forEach((link) => {
+    link.classList.toggle('is-active', link.getAttribute('href') === `#${currentId}`);
+  });
+};
+
+window.addEventListener('scroll', highlightNav, { passive: true });
+highlightNav();
+
+</script>
+</body>
+</html>
